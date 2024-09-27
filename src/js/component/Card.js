@@ -30,9 +30,9 @@ const Card = ({ item, index, category }) => {
 
     return (
 
-        <div className="card" >
+        <div className="card" style={{ minWidth: "15rem" }}>
             <img src={imgSrc} onError={handleImgErr} style={imgStyle} className="card-img-top" alt="img not available" />
-            <div className="card-body d-flex flex-column" id="cardBody" style={{ maxWidth: "18rem" }}>
+            <div className="card-body d-flex flex-column" id="cardBody">
                 <h5 className="card-title fw-bold">{item.name}</h5>
                 <p className="card-text">
                     {
@@ -52,7 +52,7 @@ const Card = ({ item, index, category }) => {
                     {
                         category == "characters" ? "Birth Year: " + item.birth_year :
                             category == "planets" ? "Terrain: " + item.terrain :
-                                "Passengers: " + item.passengers
+                                "Cargo Capacity: " + item.cargo_capacity
                     }
                 </p>
                 <div className="d-flex justify-content-between mt-auto">

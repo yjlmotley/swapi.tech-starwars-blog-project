@@ -6,11 +6,10 @@ import Card from "../component/Card.js";
 export const Home = () => {
 	const { store } = useContext(Context);
 
-
-
+	//TODO: FIX SCROLL Y ISSUE & PLAY W/ STYLING for the SCROLL BARD
 	return (
-		<div className="main-div">
-			<div className="d-flex flex-column w-100 mt-3 align-item-center">
+		<div className="container">
+			<div className="d-flex flex-column w-100 mt-3 mb-5 align-item-center">
 				{/* characters card div */}
 				<h1>Characters</h1> 
 				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
@@ -21,7 +20,7 @@ export const Home = () => {
 					})}
 				</div>
 			</div>
-			<div className="d-flex flex-column w-100 mt-3 align-item-center">
+			<div className="d-flex flex-column w-100 mb-5 align-item-center">
 				{/* planets card div */}
 				<h1>Planets</h1>
 				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
@@ -32,7 +31,7 @@ export const Home = () => {
 					})}
 				</div>
 			</div>
-			<div className="d-flex flex-column w-100 mt-3 align-item-center">
+			<div className="d-flex flex-column w-100 mb-5 align-item-center">
 				{/* starships card div */}
 				<h1>Starships</h1>
 				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">

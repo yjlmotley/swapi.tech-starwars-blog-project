@@ -1,44 +1,30 @@
 
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import emptyPicImg from "../../img/star-wars-empty.jpg";
-import tatooineImg from "../../img/tatooine.jpg";
-import bespinImg from "../../img/bespin.jpg";
+import noImg from "../../img/sw-no-img.jpg";
 
 
 export const Details = ({ category }) => {
 	const { store } = useContext(Context);
-	const [imgErr, setImgErr] = useState(false);
 	const params = useParams();
-	const location = useLocation();
-
-	useEffect(() => {
-		setImgErr(false);
-	}, [location]);
-
-
-	const character = store.characters.find((item, index) => index == params.theid);
-	const planet = store.planets.find((item, index) => index == params.theid);
-	const starship = store.starships.find((item, index) => index == params.theid);
-
 	const GUIDE_URL = "https://starwars-visualguide.com/assets/img/"
-	const getImgUrl = () => {
-		if (imgErr && planet.name === "Tatooine") {
-			return tatooineImg;
-		} else if (planet.name === "Bespin") {
-			return bespinImg;
-		} else if (category === "starships") {
-			return store.starshipImages[parseInt(params.theid)] || emptyPicImg;
-		} return GUIDE_URL + category + "/" + (parseInt(params.theid) + 1) + ".jpg";
-	}
-
+	const [ imgUrl, setImgUrl ] = useState(`${GUIDE_URL}${category}/${parseInt(params.id) + 1}.jpg`)
 
 	const handleImgErr = () => {
-		setImgErr(true);
+		setImgUrl(noImg);
 	};
+
+	useEffect(() => {
+		setImgUrl(`${GUIDE_URL}${category}/${parseInt(params.id) + 1}.jpg`);
+	}, [category, params.id,]);
+
+
+	const character = store.characters.find((item, index) => index == params.id);
+	const planet = store.planets.find((item, index) => index == params.id);
+	const vehicle = store.vehicles.find((item, index) => index == params.id);
 
 
 	return (
@@ -48,7 +34,7 @@ export const Details = ({ category }) => {
 				<div className="row g-0">
 					<div className="col-md-4 p-3 d-flex align-items-center justify-content-center">
 						<img
-							src={getImgUrl()}
+							src={imgUrl}
 							onError={handleImgErr}
 							className="img-fluid rounded-start rounded"
 							alt="image not available"
@@ -61,7 +47,7 @@ export const Details = ({ category }) => {
 									{
 										category == "characters" ? character.name :
 											category == "planets" ? planet.name :
-												starship.name
+												vehicle.name
 									}
 								</u>
 							</h2>
@@ -77,7 +63,7 @@ export const Details = ({ category }) => {
 									{
 										category == "characters" ? character.birth_year :
 											category == "planets" ? planet.terrain :
-												starship.manufacturer
+												vehicle.manufacturer
 									}
 								</p>
 							</div>
@@ -86,14 +72,14 @@ export const Details = ({ category }) => {
 									{
 										category == "characters" ? "Gender:" :
 											category == "planets" ? "Climate:" :
-												"Starship:"
+												"Vehicle:"
 									}
 								</u>
 								<p className="ps-2">
 									{
 										category == "characters" ? character.gender :
 											category == "planets" ? planet.climate :
-												starship.starship_class
+												vehicle.vehicle_class
 									}
 								</p>
 							</div>
@@ -109,7 +95,7 @@ export const Details = ({ category }) => {
 									{
 										category == "characters" ? character.height :
 											category == "planets" ? planet.gravity :
-												starship.max_atmosphering_speed
+												vehicle.max_atmosphering_speed
 									}
 								</p>
 							</div>
@@ -125,7 +111,7 @@ export const Details = ({ category }) => {
 									{
 										category == "characters" ? character.mass :
 											category == "planets" ? planet.diameter :
-												starship.crew
+												vehicle.crew
 									}
 								</p>
 							</div>
@@ -141,7 +127,7 @@ export const Details = ({ category }) => {
 									{
 										category == "characters" ? character.skin_color :
 											category == "planets" ? planet.surface_water :
-												starship.passengers
+												vehicle.passengers
 									}
 								</p>
 							</div>
@@ -157,7 +143,7 @@ export const Details = ({ category }) => {
 									{
 										category == "characters" ? character.eye_color :
 											category == "planets" ? planet.population :
-												starship.consumables
+												vehicle.consumables
 									}
 								</p>
 							</div>

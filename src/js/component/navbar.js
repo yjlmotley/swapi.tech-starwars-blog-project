@@ -3,17 +3,34 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
-	const { store } = useContext(Context);
+	const { store, actions } = useContext(Context);
 
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
+		<nav className="navbar navbar-dark bg-dark mb-4 px-5 ">
 			<Link to="/">
 				<span className="navbar-brand mb-0 h1">Star Wars HOME</span>
 			</Link>
-			<div className="ml-auto">
-				<Link to="/demo">
-					<button className="btn btn-primary">Favorites [{store.favorites.length}]</button>
-				</Link>
+			<div className="ml-auto dropdown">
+				<button className="btn btn-secondary dropdown-toggle" id="favBtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					Favorites [{store.favorites.length}]
+				</button>
+				<ul className="dropdown-menu dropdown-menu-dark dropdown-menu-end mt-1">
+					{store.favorites.length > 0 ? (
+						store.favorites.map((favs, index) => (
+							<li className= "dropdown-item d-flex justify-content-between" key={index} >
+								<Link to={"/details/" + favs.category + "/" + favs.index} className="favlink text-white" >
+
+									<span>{favs.name}</span>
+								</Link>
+								<span onClick={() => handleDeleteFavorite(index)}>
+									<i className="fa-regular fa-trash-can ms-2"></i>
+								</span>
+							</li>
+						))
+					) : (
+						<li className="dropdown-item text-center">(empty)</li>
+					)}
+				</ul>
 			</div>
 		</nav>
 	);
