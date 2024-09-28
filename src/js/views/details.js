@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
@@ -10,23 +9,20 @@ import noImg from "../../img/sw-no-img.jpg";
 export const Details = ({ category }) => {
 	const { store } = useContext(Context);
 	const params = useParams();
-	const GUIDE_URL = "https://starwars-visualguide.com/assets/img/"
-	const [ imgUrl, setImgUrl ] = useState(`${GUIDE_URL}${category}/${parseInt(params.id) + 1}.jpg`)
 
-	const handleImgErr = () => {
-		setImgUrl(noImg);
-	};
+	const GUIDE_URL = "https://starwars-visualguide.com/assets/img/"
+	const [imgUrl, setImgUrl] = useState(`${GUIDE_URL}${category}/${parseInt(params.id) + 1}.jpg`)
+
 
 	useEffect(() => {
 		setImgUrl(`${GUIDE_URL}${category}/${parseInt(params.id) + 1}.jpg`);
 	}, [category, params.id,]);
 
-
 	const character = store.characters.find((item, index) => index == params.id);
 	const planet = store.planets.find((item, index) => index == params.id);
 	const vehicle = store.vehicles.find((item, index) => index == params.id);
 
-
+	
 	return (
 		<div className="d-flex justify-content-center">
 			<div className="card bg-dark text-light my-5"
@@ -35,7 +31,7 @@ export const Details = ({ category }) => {
 					<div className="col-md-4 p-3 d-flex align-items-center justify-content-center">
 						<img
 							src={imgUrl}
-							onError={handleImgErr}
+							onError={() => setImgUrl(noImg)}
 							className="img-fluid rounded-start rounded"
 							alt="image not available"
 						/>
@@ -157,5 +153,5 @@ export const Details = ({ category }) => {
 
 
 Details.propTypes = {
-    category: PropTypes.string.isRequired
+	category: PropTypes.string.isRequired
 };

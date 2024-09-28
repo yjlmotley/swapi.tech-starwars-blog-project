@@ -3,14 +3,14 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import Card from "../component/Card.js";
 
+
 export const Home = () => {
 	const { store } = useContext(Context);
 
-	//TODO: PLAY W/ STYLING for the SCROLL
 	return (
 		<div className="container">
+			{/* characters card div */}
 			<div className="d-flex flex-column w-100 mb-5 align-item-center">
-				{/* characters card div */}
 				<h1>Characters</h1> 
 				<div 
 					id="cardDiv" 
@@ -24,8 +24,8 @@ export const Home = () => {
 					})}
 				</div>
 			</div>
+			{/* planets card div */}
 			<div className="d-flex flex-column w-100 mb-5 align-item-center">
-				{/* planets card div */}
 				<h1>Planets</h1>
 				<div id="cardDiv" className="d-flex flex-nowrap align-items-stretch pb-1" style={{ overflowX: "auto" }}>
 					{store.planets.map((item, index) => {
@@ -35,8 +35,8 @@ export const Home = () => {
 					})}
 				</div>
 			</div>
+			{/* starships card div */}
 			<div className="d-flex flex-column w-100 mb-5 align-item-center">
-				{/* starships card div */}
 				<h1>Starships</h1>
 				<div id="cardDiv" className="d-flex flex-nowrap align-items-stretch pb-1" style={{ overflowX: "auto" }}>
 					{store.vehicles.map((item, index) => {
@@ -48,5 +48,4 @@ export const Home = () => {
 			</div>
 		</div>
 	)
-
 };

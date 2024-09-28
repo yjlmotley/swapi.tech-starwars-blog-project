@@ -3,13 +3,13 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import swLogo from "../../img/sw-logo-grey.png";
 
+
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
 		<nav className="navbar navbar-dark bg-dark mb-4 px-5 ">
 			<Link to="/">
-				{/* <span className="navbar-brand mb-0 h1">Star Wars HOME</span> */}
 				<img style={{height: "50px"}} src={swLogo} />
 			</Link>
 			<div className="ml-auto dropdown">
@@ -24,7 +24,7 @@ export const Navbar = () => {
 
 									<span>{favs.name}</span>
 								</Link>
-								<span onClick={() => handleDeleteFavorite(index)}>
+								<span onClick={() => actions.deleteFavorites(index)}>
 									<i className="fa-regular fa-trash-can ms-2" />
 								</span>
 							</li>

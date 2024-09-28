@@ -2,19 +2,15 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+
 import noImg from "../../img/sw-no-img.jpg";
 
 
 const Card = ({ item, index, category }) => {
-
     const { store, actions } = useContext(Context);
     const GUIDE_URL = "https://starwars-visualguide.com/assets/img/";
     const [imgSrc, setImgSrc ] = useState(`${GUIDE_URL}${category}/${index + 1}.jpg`);
-    
-    const handleImgErr = () => {
-        setImgSrc(noImg);
-    }
-
+  
     const imgStyle = {
         height: category === "vehicles" ? "180px" :
             category === "planets" ? "254px" :
@@ -31,7 +27,7 @@ const Card = ({ item, index, category }) => {
     return (
 
         <div className="card me-2" style={{ minWidth: "15rem" }}>
-            <img src={imgSrc} onError={handleImgErr} style={imgStyle} className="card-img-top" alt="img not available" />
+            <img src={imgSrc} onError={() => setImgSrc(noImg)} style={imgStyle} className="card-img-top" alt="img not available" />
             <div className="card-body d-flex flex-column" id="cardBody">
                 <h5 className="card-title fw-bold">{item.name}</h5>
                 <p className="card-text">
