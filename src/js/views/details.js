@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import noImg from "../../img/sw-no-img.jpg";
+// import noImg from "../../img/sw-no-img.jpg";
 
 
 export const Details = ({ category }) => {
@@ -31,7 +31,8 @@ export const Details = ({ category }) => {
 					<div className="col-md-4 p-3 d-flex align-items-center justify-content-center">
 						<img
 							src={imgUrl}
-							onError={() => setImgUrl(noImg)}
+							// onError={() => setImgUrl(noImg)}
+							onError={() => setImgUrl("/sw-no-img.jpg")}
 							className="img-fluid rounded-start rounded"
 							alt="image not available"
 						/>
