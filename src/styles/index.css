@@ -1,3 +1,4 @@
-/* 
-    General Styles
-*/
+.fa-trash-can:hover {
+    color: #ffc107;
+    cursor: pointer;
+}

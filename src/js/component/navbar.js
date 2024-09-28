@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import swLogo from "../../img/sw-logo-grey.png";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -8,7 +9,8 @@ export const Navbar = () => {
 	return (
 		<nav className="navbar navbar-dark bg-dark mb-4 px-5 ">
 			<Link to="/">
-				<span className="navbar-brand mb-0 h1">Star Wars HOME</span>
+				{/* <span className="navbar-brand mb-0 h1">Star Wars HOME</span> */}
+				<img style={{height: "50px"}} src={swLogo} />
 			</Link>
 			<div className="ml-auto dropdown">
 				<button className="btn btn-secondary dropdown-toggle" id="favBtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -23,7 +25,7 @@ export const Navbar = () => {
 									<span>{favs.name}</span>
 								</Link>
 								<span onClick={() => handleDeleteFavorite(index)}>
-									<i className="fa-regular fa-trash-can ms-2"></i>
+									<i className="fa-regular fa-trash-can ms-2" />
 								</span>
 							</li>
 						))

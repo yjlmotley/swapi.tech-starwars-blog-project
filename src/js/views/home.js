@@ -6,13 +6,17 @@ import Card from "../component/Card.js";
 export const Home = () => {
 	const { store } = useContext(Context);
 
-	//TODO: FIX SCROLL Y ISSUE & PLAY W/ STYLING for the SCROLL BARD
+	//TODO: PLAY W/ STYLING for the SCROLL
 	return (
 		<div className="container">
-			<div className="d-flex flex-column w-100 mt-3 mb-5 align-item-center">
+			<div className="d-flex flex-column w-100 mb-5 align-item-center">
 				{/* characters card div */}
 				<h1>Characters</h1> 
-				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
+				<div 
+					id="cardDiv" 
+					className="d-flex flex-nowrap align-items-stretch pb-1"
+					style={{ overflowX: "auto" }}
+				>
 					{store.characters.map((item, index) => {
 						return (
 							<Card item={item} index={index} key={index} category="characters" /> 
@@ -23,7 +27,7 @@ export const Home = () => {
 			<div className="d-flex flex-column w-100 mb-5 align-item-center">
 				{/* planets card div */}
 				<h1>Planets</h1>
-				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
+				<div id="cardDiv" className="d-flex flex-nowrap align-items-stretch pb-1" style={{ overflowX: "auto" }}>
 					{store.planets.map((item, index) => {
 						return (
 							<Card item={item} index={index} key={index} category="planets" /> 
@@ -34,7 +38,7 @@ export const Home = () => {
 			<div className="d-flex flex-column w-100 mb-5 align-item-center">
 				{/* starships card div */}
 				<h1>Starships</h1>
-				<div id="cardDiv" className="d-flex flex-nowrap overflow-scroll align-items-stretch">
+				<div id="cardDiv" className="d-flex flex-nowrap align-items-stretch pb-1" style={{ overflowX: "auto" }}>
 					{store.vehicles.map((item, index) => {
 						return (
 							<Card item={item} index={index} key={index} category="vehicles" /> 
